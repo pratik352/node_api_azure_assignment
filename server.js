@@ -22,7 +22,7 @@ app.get('/api/employees', async (req, res) => {
     const result = await sql.query`SELECT * FROM Employees`;
     res.json(result.recordset);
   } catch (err) {
-    console.error(err);
+    console.error("DB error:", err.message);
     res.status(500).send("Error fetching data");
   }
 });
