@@ -20,13 +20,15 @@ app.get('/api/employees', async (req, res) => {
   try {
     await sql.connect(config);
     const result = await sql.query`SELECT * FROM Employees`;
-    return res.json(result.recordset);
+    res.json(result.recordset);
   } catch (err) {
     console.error(err);
-    return res.status(500).send("Error fetching data");
+    res.status(500).send("Error fetching data");
   }
 });
 
-app.get("/", (req, res) => { return res.json({"hello": "hello"})});
+app.get("/", (req, res) => {
+  res.json({"hello": "hello"})
+});
 
 app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
